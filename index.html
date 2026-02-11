@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pedidos - Mi Tienda</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 500px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #25d366; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #25d366; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+        button:hover { background-color: #128c7e; }
+        .footer-note { font-size: 0.8em; text-align: center; margin-top: 15px; color: #777; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2> Realizar Pedido</h2>
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="name">Nombre Completo:</label>
+            <input type="text" id="name" placeholder="nombre y apellido" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="product">Tipo de uniforme:</label>
+                       <form id="orderForm" class="order-form">
+                                <select id="producto" required>
+                    <option value="" disabled selected>Selecciona el uniforme que necesita</option>
+                    <option value="Basquetbol">Basquetbol</option>
+                    <option value="Futbol">Futbol</option>
+                    <option value="Voleibol">Voleibol</option>
+                    <option value="Playera manga corta">Playera manga corta</option>
+                    <option value="Playera polo">Playera polo</option>     
+                </select>
+        </div>
+       
+        <div class="form-group">
+            <label for="product">Qué Necesitas?:</label>
+                       <form id="orderForm" class="order-form">
+                                <select id="producto" required>
+                    <option value="" disabled selected>Seleccione talla y cantidad</option>
+                    <option value="Infantil Talla 4-8">Infantil Talla 4-8</option>
+                    <option value="Juvenil Talla 10-14">Juvenil Talla 10-14</option>
+                    <option value="Adulto Talla 16-EG">Adulto Talla 16-EG</option>
+                    <option value="2X">2X</option>
+                    <option value="3x">3X</option>     
+                    <option value="4x">4X</option>  
+                </select>
+                      
+                    <input type="text" id="name" placeholder="Cantidad" required>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="address">Dirección de Envío:</label>
+            <input type="text" id="address" placeholder="Calle, número y colonia" required>
+        </div>
+      
+        <div class="form-group">
+            <label for="address">Comentarios:</label>
+            <input type="text" id="address" placeholder="Comentarios" required>
+        </div>
+
+
+        <button type="submit"> Realizar pedido por WhatsApp</button>
+    </form>
+    <p class="footer-note">Al hacer clic, se abrirá tu WhatsApp para confirmar.</p>
+</div>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Datos del formulario
+        const name = document.getElementById('name').value;
+        const product = document.getElementById('product').value;
+        const address = document.getElementById('address').value;
+        const phone = "9831034908"; // Tu número sin espacios
+
+        // Crear el mensaje (Codificado para URL)
+        const message = `*Nuevo Pedido*%0A` +
+                        `*Nombre:* ${name}%0A` +
+                        `*Pedido:* ${product}%0A` +
+                        `*Dirección:* ${address}`;
+
+        // Crear el enlace de WhatsApp
+        const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+
+        // Abrir en una nueva ventana
+        window.open(whatsappUrl, '_blank');
+    });
+</script>
+
+</body>
+</html>
